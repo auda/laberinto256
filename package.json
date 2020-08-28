@@ -1,0 +1,8 @@
+{
+  "name": "js-wo5dhn",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "three.js": "^0.77.1"
+  }
+}
