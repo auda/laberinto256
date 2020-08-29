@@ -6,28 +6,26 @@ class Graficos {
   constructor() {}
 
   static init() {
-    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
-    this.scene = new THREE.Scene();
+    Graficos.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+    Graficos.scene = new THREE.Scene();
     //scene.background = new THREE.Color(0x2b2b2b);
     //scene.fog = new THREE.Fog(0x2b2b2b, 1, 10000);
 
-    this.renderer = new THREE.WebGLRenderer({ antialias: false });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(this.renderer.domElement);
-    window.addEventListener('resize', this.onWindowResize, false);
+    Graficos.renderer = new THREE.WebGLRenderer({ antialias: false });
+    Graficos.renderer.setPixelRatio(window.devicePixelRatio);
+    Graficos.renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(Graficos.renderer.domElement);
+    window.addEventListener('resize', Graficos.onWindowResize, false);
   }
 
   static onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    Graficos.camera.aspect = window.innerWidth / window.innerHeight;
+    Graficos.camera.updateProjectionMatrix();
+    Graficos.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   static render() {
-    this.renderer.render(this.scene, this.camera);
+    Graficos.renderer.render(Graficos.scene, Graficos.camera);
   }
 
 
@@ -79,7 +77,7 @@ class Graficos {
     }
 
     if (Juego.configuracion.verMuneco) {
-      var spriteMap = new THREE.TextureLoader().load('assets/pj.png');
+      var spriteMap = new THREE.TextureLoader().load('../resources/pj.png');
       spriteMap.magFilter = THREE.NearestFilter;
       spriteMap.minFilter = THREE.LinearFilter;
 

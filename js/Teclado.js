@@ -5,12 +5,12 @@ class Teclado {
   }
 
   static init(){
-    window.addEventListener('keydown', this.onKeyDown, false);
-    window.addEventListener('keyup', this.onKeyUp, false);
+    window.addEventListener('keydown', Teclado.onKeyDown, false);
+    window.addEventListener('keyup', Teclado.onKeyUp, false);
   }
 
-  static onKeyUp(event)   {this.tecla[event.keyCode] = 0;}
-  static onKeyDown(event) {this.tecla[event.keyCode] = 1;}
+  static onKeyUp(event)   {Teclado.tecla[event.keyCode] = 0;}
+  static onKeyDown(event) {Teclado.tecla[event.keyCode] = 1;}
 
 }
 

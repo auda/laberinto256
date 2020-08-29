@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 
 import { Mapa } from "./Mapa";
 import { Objeto } from "./Objeto";
@@ -21,8 +22,8 @@ class Juego {
         this.mapa.cargar();
         this.mapa.crear3D();
         this.jugador.crear3D();
-        Graficos.escena.add(this.mapa.mesh);
-        Graficos.escena.add(this.jugador.mesh);
+        Graficos.scene.add(this.mapa.mesh);
+        Graficos.scene.add(this.jugador.mesh);
         this.estado = 1;
         break;
 
@@ -38,8 +39,8 @@ class Juego {
         break;
 
       case 2:
-        Graficos.escena.remove(this.mapa.mesh);
-        Graficos.escena.remove(this.jugador.mesh);
+        Graficos.scene.remove(this.mapa.mesh);
+        Graficos.scene.remove(this.jugador.mesh);
         this.mapa = new Mapa(this, 10);
         this.jugador = new Personaje(this.mapa);    
         this.estado = 0;
@@ -57,7 +58,7 @@ class Juego {
 
   actualizarCamara() {
     var tipoCamara = 2;
-    var jugador = juego.jugador;
+    var jugador = this.jugador;
     var posicion = jugador.posicionXYZ();
 
     if (tipoCamara == 0) {
