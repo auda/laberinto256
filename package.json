@@ -3,6 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "three.js": "^0.77.1"
+    "three": "^0.120.0"
   }
 }

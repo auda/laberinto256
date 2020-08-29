@@ -43,3 +43,6 @@ class VariableContinua {
     }
   }   
 }
+
+
+export { VariableContinua };

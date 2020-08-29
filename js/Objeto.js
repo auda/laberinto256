@@ -1,4 +1,6 @@
 
+import { Graficos } from "./Graficos"
+
 class Objeto {
   constructor (mapa, posicion, largo=5, ancho=5, alto=5){
     this.mapa = mapa;
@@ -10,9 +12,11 @@ class Objeto {
   }
 
   crear3D() {
-    this.mesh = crearCubo(this.posicion,this.largo,this.ancho,this.alto);
+    this.mesh = Graficos.crearCubo(this.posicion,this.largo,this.ancho,this.alto);
     return this.mesh;
   }
 
 }
 
+
+export { Objeto };

@@ -1,3 +1,12 @@
+
+import { Juego } from "./Juego";
+import { Mapa } from "./Mapa";
+import { Objeto } from "./Objeto";
+import { Personaje } from "./Personaje";
+import { VariableContinua } from "./Utils";
+import { Graficos } from "./Graficos"
+
+
 class Personaje {
   constructor(mapa) {
     this.mapa = mapa;
@@ -95,7 +104,7 @@ class Personaje {
   }
 
   crear3D() {
-    this.mesh = crearMallaJugador(this.ancho,this.alto,this.largo);
+    this.mesh = Graficos.crearMallaJugador(this.ancho,this.alto,this.largo);
   }
 
   objetosEnContacto() {
@@ -126,3 +135,5 @@ class Personaje {
   }
 }
 
+
+export {Personaje};

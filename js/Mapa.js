@@ -1,4 +1,13 @@
 
+import * as THREE from 'three';
+
+import { Juego } from "./Juego";
+import { Mapa } from "./Mapa";
+import { Objeto } from "./Objeto";
+import { Personaje } from "./Personaje";
+import { VariableContinua } from "./Utils";
+import { Graficos } from "./Graficos"
+ 
 class Mapa {
   constructor(juego, tamCelda) {
     this.juego = juego;
@@ -12,34 +21,6 @@ class Mapa {
   }
 
   cargar () {
-    console.log(this.image.estado);
-    if (this.image.estado == 0) {
-      var image = new Image();
-      image.mapa = this;
-      image.src = 'assets/mapa.png';
-      image.setAttribute('crossOrigin', '');
-      image.onload = function() {
-          var canvas = document.createElement('canvas');
-          canvas.width = image.width;
-          canvas.height = image.height;
-          var context = canvas.getContext('2d');
-
-          context.drawImage(image, 0, 0);
-          this.mapa.image.data = context.getImageData(0, 0, image.width, image.height).data;
-          this.mapa.image.width = image.width;
-          this.mapa.image.height = image.height;
-          this.mapa.image.estado = 2;
-          }
-      this.image.estado = 1;
-      return false;
-    }
-    else if (this.image.estado == 1)
-      return false;
-
-    console.log(this.image.estado);
-
-    this.filas = 5;
-    this.columnas = 5;
 /*
     this.alturas = new Array();
     for (var i=0;i<this.filas;i++){
@@ -56,8 +37,8 @@ class Mapa {
                     [13,12,11,10,9],    
     ]
 
-    console.log(this.filas+"x"+this.columnas);
-    //this.crearAlturasAleatorias(1);
+    this.filas = this.alturas.length;
+    this.columnas = this.alturas[0].length;
 
     var posicion = this.posicionXYZ(2.5,2.5);
     var objeto = new Objeto(this, posicion);
@@ -103,7 +84,7 @@ class Mapa {
   crear3D() {
     var group = new THREE.Group();
 
-    if (config.verCentroMapa)
+    if (Juego.configuracion.verCentroMapa)
        group.add(crearEjeY());
 
     // creamos las celdas
@@ -111,7 +92,7 @@ class Mapa {
       for (var j = 0; j < this.columnas; j++) {
         var posicion = this.posicionXYZ(i + 0.5, j + 0.5);
 
-        var obj = crearCelda(this.tamCelda, posicion.y);
+        var obj = Graficos.crearCelda(this.tamCelda, posicion.y);
         obj.position.x = posicion.x;
         obj.position.z = posicion.z;
         obj.matrixAutoUpdate = false;
@@ -128,7 +109,7 @@ class Mapa {
     }
 
 
-    var obj = crearSprite('llave', this.objetos[0].posicion, 5);
+    var obj = Graficos.crearSprite('llave', this.objetos[0].posicion, 5);
     group.add(obj);
 
    this.mesh = group;
@@ -145,3 +126,6 @@ class Mapa {
 
 
 }
+
+
+export {Mapa};
