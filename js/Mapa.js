@@ -1,12 +1,6 @@
 
 import * as THREE from 'three';
 
-import { Juego } from "./Juego";
-import { Mapa } from "./Mapa";
-import { Objeto } from "./Objeto";
-import { Personaje } from "./Personaje";
-import { VariableContinua } from "./Utils";
-import { Graficos } from "./Graficos"
  
 class Mapa {
   constructor(juego, tamCelda) {

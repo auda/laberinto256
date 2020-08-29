@@ -1,11 +1,10 @@
 
-import { Juego } from "./Juego";
 import { Mapa } from "./Mapa";
 import { Objeto } from "./Objeto";
 import { Personaje } from "./Personaje";
 import { VariableContinua } from "./Utils";
-import { Teclado } from "./Teclado.js";
-import { Graficos } from "./Graficos.js";
+import { Teclado } from "./Teclado";
+import { Graficos } from "./Graficos";
 
 class Juego {
   constructor() {
