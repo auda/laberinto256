@@ -77,7 +77,7 @@ class Graficos {
     }
 
     if (Juego.configuracion.verMuneco) {
-      var spriteMap = new THREE.TextureLoader().load('../resources/pj.png');
+      var spriteMap = new THREE.TextureLoader().load("./pj.png");
       spriteMap.magFilter = THREE.NearestFilter;
       spriteMap.minFilter = THREE.LinearFilter;
 
@@ -162,7 +162,8 @@ class Graficos {
 
 
   static crearSprite(nombre, posicion, escala) {
-    var spriteMap = new THREE.TextureLoader().load('assets/'+nombre+'.png');
+    var url  = "https://cdn.jsdelivr.net/gh/auda/laberinto256@master/resources/pj.png";
+    var spriteMap = new THREE.TextureLoader().load(url);
     spriteMap.magFilter = THREE.NearestFilter;
     spriteMap.minFilter = THREE.LinearFilter;
 
