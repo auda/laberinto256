@@ -3,8 +3,8 @@ import * as THREE from 'three';
 import { Juego } from "./Juego";
 
 class Recursos {}
-Recursos.pj = "https://github.com/auda/laberinto256/blob/master/resources/pj.png";
-Recursos.llave = "https://github.com/auda/laberinto256/blob/master/resources/llave.png";
+Recursos.pj = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj.png";
+Recursos.llave = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/llave.png";
 
 class Graficos { 
   constructor() {}
