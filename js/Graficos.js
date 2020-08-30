@@ -2,6 +2,10 @@
 import * as THREE from 'three';
 import { Juego } from "./Juego";
 
+class Recursos {}
+Recursos.pj = "https://github.com/auda/laberinto256/blob/master/resources/pj.png";
+Recursos.llave = "https://github.com/auda/laberinto256/blob/master/resources/llave.png";
+
 class Graficos { 
   constructor() {}
 
@@ -77,7 +81,7 @@ class Graficos {
     }
 
     if (Juego.configuracion.verMuneco) {
-      var spriteMap = new THREE.TextureLoader().load("./pj.png");
+      var spriteMap = new THREE.TextureLoader().load(Recursos.pj);
       spriteMap.magFilter = THREE.NearestFilter;
       spriteMap.minFilter = THREE.LinearFilter;
 
@@ -162,8 +166,7 @@ class Graficos {
 
 
   static crearSprite(nombre, posicion, escala) {
-    var url  = "https://cdn.jsdelivr.net/gh/auda/laberinto256@master/resources/pj.png";
-    var spriteMap = new THREE.TextureLoader().load(url);
+    var spriteMap = new THREE.TextureLoader().load(Recursos[nombre]);
     spriteMap.magFilter = THREE.NearestFilter;
     spriteMap.minFilter = THREE.LinearFilter;
 
