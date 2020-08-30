@@ -10,22 +10,28 @@ class Graficos {
   constructor() {}
 
   static init() {
-    Graficos.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
-    Graficos.scene = new THREE.Scene();
-    //scene.background = new THREE.Color(0x2b2b2b);
-    //scene.fog = new THREE.Fog(0x2b2b2b, 1, 10000);
+    var width = window.innerWidth - 20;
+    var height = window.innerHeight - 20;
+    if (Graficos.renderer == null) {
+      Graficos.camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
+      Graficos.scene = new THREE.Scene();
+      //scene.background = new THREE.Color(0x2b2b2b);
+      //scene.fog = new THREE.Fog(0x2b2b2b, 1, 10000);
 
-    Graficos.renderer = new THREE.WebGLRenderer({ antialias: false });
-    Graficos.renderer.setPixelRatio(window.devicePixelRatio);
-    Graficos.renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(Graficos.renderer.domElement);
-    window.addEventListener('resize', Graficos.onWindowResize, false);
+      Graficos.renderer = new THREE.WebGLRenderer({ antialias: false });
+      Graficos.renderer.setPixelRatio(window.devicePixelRatio);
+      Graficos.renderer.setSize(width, height);
+      document.body.appendChild(Graficos.renderer.domElement);
+      window.addEventListener('resize', Graficos.onWindowResize, false);
+    }
   }
 
   static onWindowResize() {
-    Graficos.camera.aspect = window.innerWidth / window.innerHeight;
+    var width = window.innerWidth - 20;
+    var height = window.innerHeight - 20;
+    Graficos.camera.aspect = width / height;
     Graficos.camera.updateProjectionMatrix();
-    Graficos.renderer.setSize(window.innerWidth, window.innerHeight);
+    Graficos.renderer.setSize(width, height);
   }
 
   static render() {

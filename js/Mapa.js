@@ -15,6 +15,7 @@ class Mapa {
     this.objetos = new Array();
     this.mesh;
     this.image = {estado:0};
+    this.t = 0;
   }
 
   cargar () {
@@ -108,17 +109,16 @@ class Mapa {
 
     var obj = Graficos.crearSprite('llave', this.objetos[0].posicion, 5);
     group.add(obj);
+    this.llave = obj;
 
    this.mesh = group;
   }
  
   actualizar() {
-    /*
       this.t+=.05;
-      var s = this.meshDestino.scale;
+      var s = this.llave.scale;
       var ancho = 5*Math.sin(this.t);    
-      this.meshDestino.scale.set(ancho,s.y,s.z);    
-    */
+      this.llave.scale.set(ancho,s.y,s.z); 
   }
 
 
