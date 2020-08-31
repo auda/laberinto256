@@ -105,7 +105,7 @@ class Personaje {
 
   crear3D() {
     this.mesh = Graficos.crearMallaJugador(this.ancho,this.alto,this.largo);
-    this.animacion = new Animacion(this.mesh.texture, 8,8,100);
+    this.animacion = new Animacion(this.mesh.texture, 10,2,1);
   }
 
   objetosEnContacto() {
