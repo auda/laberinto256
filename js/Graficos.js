@@ -5,6 +5,39 @@ import { Juego } from "./Juego";
 class Recursos {}
 Recursos.pj = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj.png";
 Recursos.llave = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/llave.png";
+Recursos.pj2 = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/character.png";
+
+
+class Animacion {
+  constructor (texture, hTiles, vTiles, durationTile) {
+    this.currentTile = 0;
+    this.durationTile = durationTile;
+    this.currentTime = 0;
+    this.hTiles = hTiles;
+    this.vTiles = vTiles;
+    this.cntTiles = this.hTiles * this.vTiles;
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(1 / this.hTiles, 1 / this.vTiles);
+  }
+
+  update(time) {
+    this.currentTime += time;
+    while (this.currentTime > this.durationTile) {
+      this.currentTime -= this.durationTile;
+      this.currentTile++;
+
+      if (this.currentTile == this.cntTiles)
+        this.currentTile = 0;
+
+      var iColumn = this.currentTile % this.hTiles;
+      texture.offset.x = iColumn / this.hTiles;
+      var iRow = Math.floor(this.currentTile / this.hTiles);
+      texture.offset.y = iRow / this.vTiles;
+    }
+  }
+
+}
+
 
 class Graficos { 
   constructor() {}
@@ -87,7 +120,7 @@ class Graficos {
     }
 
     if (Juego.configuracion.verMuneco) {
-      var spriteMap = new THREE.TextureLoader().load(Recursos.pj);
+      var spriteMap = new THREE.TextureLoader().load(Recursos.pj2);
       spriteMap.magFilter = THREE.NearestFilter;
       spriteMap.minFilter = THREE.LinearFilter;
 
@@ -96,6 +129,7 @@ class Graficos {
       sprite.scale.set(largo, alto, ancho);
       sprite.translateY(alto / 2);
       group.add(sprite);
+      group.texture = spriteMap;
     }
 
     return group;
@@ -221,5 +255,5 @@ Graficos.scene = null;
 Graficos.renderer = null;
 
 export {Graficos};
-
+export {Animacion};
 

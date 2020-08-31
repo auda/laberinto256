@@ -3,8 +3,8 @@ import { Juego } from "./Juego";
 import { Mapa } from "./Mapa";
 import { Objeto } from "./Objeto";
 import { VariableContinua } from "./Utils";
-import { Graficos } from "./Graficos"
-
+import { Graficos } from "./Graficos";
+import { Animacion } from "./Graficos";
 
 class Personaje {
   constructor(mapa) {
@@ -21,6 +21,7 @@ class Personaje {
     this.largo = 5;
     this.alto = 5;
     this.mesh;
+    this.animacion;
   }
 
   girarIzquierda() {this.velocidadGiro.cambiar(-this.aceleracion);}
@@ -104,6 +105,7 @@ class Personaje {
 
   crear3D() {
     this.mesh = Graficos.crearMallaJugador(this.ancho,this.alto,this.largo);
+    this.animacion = new Animacion(this.mesh.texture, 8,8,100);
   }
 
   objetosEnContacto() {
