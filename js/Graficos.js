@@ -16,8 +16,9 @@ class Animacion {
     this.hTiles = hTiles;
     this.vTiles = vTiles;
     this.cntTiles = this.hTiles * this.vTiles;
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(1 / this.hTiles, 1 / this.vTiles);
+    this.texture = texture;
+    this.texture.wrapS = this.texture.wrapT = THREE.RepeatWrapping;
+    this.texture.repeat.set(1 / this.hTiles, 1 / this.vTiles);
   }
 
   update(time) {
@@ -30,9 +31,9 @@ class Animacion {
         this.currentTile = 0;
 
       var iColumn = this.currentTile % this.hTiles;
-      texture.offset.x = iColumn / this.hTiles;
+      this.texture.offset.x = iColumn / this.hTiles;
       var iRow = Math.floor(this.currentTile / this.hTiles);
-      texture.offset.y = iRow / this.vTiles;
+      this.texture.offset.y = iRow / this.vTiles;
     }
   }
 

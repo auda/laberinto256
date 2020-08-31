@@ -117,7 +117,7 @@ class Mapa {
   actualizar() {
       this.t+=.05;
       var s = this.llave.scale;
-      var ancho = 5*Math.sin(this.t);    
+      var ancho = Math.round(5*Math.sin(this.t/1.8));    
       this.llave.scale.set(ancho,s.y,s.z); 
   }
 

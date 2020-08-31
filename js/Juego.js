@@ -10,11 +10,13 @@ import { Graficos } from "./Graficos";
 class Juego {
   constructor() {
     this.estado = 0;
+    this.clock = new THREE.Clock();
     this.mapa = new Mapa(this, 10);
     this.jugador = new Personaje(this.mapa);    
   }
 
   actualizar() {
+    var delta = this.clock.getDelta();
     switch (this.estado) {
       case 0:   
         Graficos.init();
@@ -30,7 +32,7 @@ class Juego {
       case 1: 
         this.actualizarEntrada();
         this.mapa.actualizar();
-        this.jugador.actualizar();
+        this.jugador.actualizar(delta);
         var objetos = this.jugador.objetosEnContacto();
         for (var i=0;i<objetos.length;i++)
           objetos[i].efecto();
@@ -82,7 +84,7 @@ class Juego {
       Graficos.camera.lookAt(new THREE.Vector3(0, 0, 0));
     } 
     else if (tipoCamara == 2) {
-      var distancia = 80;
+      var distancia = 60;
       var delta_x = distancia * Math.cos(-jugador.direccion + Math.PI);
       var delta_y = distancia/2+posicion.y;
       var delta_z = distancia * Math.sin(+jugador.direccion - Math.PI);

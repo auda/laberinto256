@@ -17,9 +17,9 @@ class Personaje {
     this.velocidad = new VariableContinua(20);
     this.capacidadSalto = 1;
     this.aceleracion = 0.03; //0.04;
-    this.ancho = 5;
-    this.largo = 5;
-    this.alto = 5;
+    this.ancho = 8;
+    this.largo = 8;
+    this.alto = 8;
     this.mesh;
     this.animacion;
   }
@@ -30,7 +30,7 @@ class Personaje {
   retroceder()     {this.velocidad.cambiar(-this.aceleracion);}
   posicionXYZ()    {return this.mapa.posicionXYZ(this.fila, this.columna);}
 
-  actualizar() {
+  actualizar(time) {
     this.direccion += this.velocidadGiro.valor;
 
     var d_fila = this.velocidad.valor * Math.cos(this.direccion);
@@ -52,7 +52,7 @@ class Personaje {
     this.velocidad.actualizar();
     this.velocidadGiro.actualizar();
     this.actualizarPosicion(new_fila, new_columna);
-    
+    this.animacion.update(time);
   }
 
   puedeMover(destino) {
@@ -105,7 +105,7 @@ class Personaje {
 
   crear3D() {
     this.mesh = Graficos.crearMallaJugador(this.ancho,this.alto,this.largo);
-    this.animacion = new Animacion(this.mesh.texture, 10,2,1);
+    this.animacion = new Animacion(this.mesh.texture, 10,2,.06);
   }
 
   objetosEnContacto() {
