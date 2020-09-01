@@ -5,7 +5,7 @@ import { Juego } from "./Juego";
 class Recursos {}
 Recursos.pj = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj.png";
 Recursos.llave = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/llave.png";
-Recursos.pj2 = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/character.png";
+Recursos.pj2 = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj3.png";
 
 
 class Animacion {
