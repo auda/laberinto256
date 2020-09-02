@@ -3,22 +3,23 @@ import * as THREE from 'three';
 import { Juego } from "./Juego";
 
 class Recursos {}
-Recursos.pj = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj.png";
+Recursos.mapaSprites = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj4.png";
 Recursos.llave = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/llave.png";
 Recursos.pj2 = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj3.png";
 
 
 class Animacion {
-  constructor (texture, hTiles, vTiles, durationTile) {
+  constructor (texture, secuencias) {
     this.currentTile = 0;
-    this.durationTile = durationTile;
+    this.durationTile = texture.velocidad;
     this.currentTime = 0;
-    this.hTiles = hTiles;
-    this.vTiles = vTiles;
+    this.hTiles = texture.columnas;
+    this.vTiles = texture.filas;
     this.cntTiles = this.hTiles * this.vTiles;
     this.texture = texture;
     this.texture.wrapS = this.texture.wrapT = THREE.RepeatWrapping;
     this.texture.repeat.set(1 / this.hTiles, 1 / this.vTiles);
+    this.secuencias = secuencias;
   }
 
   update(time) {
@@ -47,6 +48,14 @@ class Graficos {
     var width = window.innerWidth - 20;
     var height = window.innerHeight - 20;
     if (Graficos.renderer == null) {
+      Graficos.mapaSprites = new THREE.TextureLoader().load(Recursos.mapaSprites);
+      Graficos.mapaSprites.magFilter = THREE.NearestFilter;
+      Graficos.mapaSprites.minFilter = THREE.LinearFilter;
+      Graficos.mapaSprites.filas = 4;
+      Graficos.mapaSprites.columnas = 3;
+      Graficos.mapaSprites.velocidad = .1;
+  
+
       Graficos.camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
       Graficos.scene = new THREE.Scene();
       //scene.background = new THREE.Color(0x2b2b2b);
@@ -121,16 +130,12 @@ class Graficos {
     }
 
     if (Juego.configuracion.verMuneco) {
-      var spriteMap = new THREE.TextureLoader().load(Recursos.pj2);
-      spriteMap.magFilter = THREE.NearestFilter;
-      spriteMap.minFilter = THREE.LinearFilter;
-
+      var spriteMap = Graficos.mapaSprites;
       var spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap });
       var sprite = new THREE.Sprite(spriteMaterial);
       sprite.scale.set(largo, alto, ancho);
       sprite.translateY(alto / 2);
       group.add(sprite);
-      group.texture = spriteMap;
     }
 
     return group;
@@ -254,6 +259,7 @@ class Graficos {
 Graficos.camera = null;
 Graficos.scene = null;
 Graficos.renderer = null;
+Graficos.mapaSprites = null;
 
 export {Graficos};
 export {Animacion};
