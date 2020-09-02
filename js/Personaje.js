@@ -4,7 +4,7 @@ import { Mapa } from "./Mapa";
 import { Objeto } from "./Objeto";
 import { VariableContinua } from "./Utils";
 import { Graficos } from "./Graficos";
-import { Animacion } from "./Graficos";
+import { Animacion } from "./Animacion";
 
 class Personaje {
   constructor(mapa) {

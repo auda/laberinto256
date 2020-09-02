@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { Juego } from "./Juego";
 
+
 class Recursos {}
 Recursos.mapaSprites = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj4.png";
 Recursos.llave = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/llave.png";
@@ -231,5 +232,3 @@ Graficos.renderer = null;
 Graficos.mapaSprites = null;
 
 export {Graficos};
-export {Animacion};
-

@@ -1,4 +1,8 @@
 
+import * as THREE from 'three';
+
+
+
 class Animacion {
   constructor (texture, secuencias) {
     this.currentTile = 0;
@@ -30,3 +34,7 @@ class Animacion {
   }
 
 }
+
+
+export {Animacion};
+
