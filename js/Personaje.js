@@ -52,6 +52,11 @@ class Personaje {
     this.velocidad.actualizar();
     this.velocidadGiro.actualizar();
     this.actualizarPosicion(new_fila, new_columna);
+
+    if (this.velocidad.valor > 0) this.animacion.secuencia("arriba");
+    else if (this.velocidad.valor < 0) this.animacion.secuencia("abajo");
+    else this.animacion.parar();
+
     this.animacion.update(time);
   }
 
@@ -106,8 +111,8 @@ class Personaje {
   crear3D() {
     this.mesh = Graficos.crearMallaJugador(this.ancho,this.alto,this.largo);
     this.animacion = new Animacion(Graficos.mapaSprites, 
-    {"arriba":[0,1,2], "abajo": [3,4,5], "izquierda": [6,7,8], "derecha": [9,10,11]});  
-//    this.animacion.setSecuencia("izquierda");
+    {"derecha":[0,1,2], "izquierda": [3,4,5], "abajo": [6,7,8], "arriba": [9,10,11], "parado":[0]});  
+    this.animacion.comenzar();
   }
 
   objetosEnContacto() {

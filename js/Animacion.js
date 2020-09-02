@@ -5,6 +5,7 @@ import * as THREE from 'three';
 
 class Animacion {
   constructor (texture, secuencias) {
+    this.avanzarIndex = false;
     this.currentIndex = 0;
     this.currentTile = 0;
     this.durationTile = texture.velocidad;
@@ -20,6 +21,8 @@ class Animacion {
   }
 
   update(time) {
+    if (!this.avanzarIndex) return;
+
     this.currentTime += time;
     while (this.currentTime > this.durationTile) {
       this.currentTime -= this.durationTile;
@@ -29,23 +32,38 @@ class Animacion {
       if (this.currentIndex == secuencia.length)
         this.currentIndex = 0;
 
-      this.currentTile = secuencia[this.currentIndex];
-
-      var iColumn = this.currentTile % this.hTiles;
-      this.texture.offset.x = iColumn / this.hTiles;
-      var iRow = Math.floor(this.currentTile / this.hTiles);
-      this.texture.offset.y = iRow / this.vTiles;
+      this.actualizarFrame();
     }
   }
-/*
-  setSecuencia(nombre){
+
+  actualizarFrame() {
+    var secuencia = this.secuencias[this.secuenciaActual];
+    this.currentTile = secuencia[this.currentIndex];
+
+    var iColumn = this.currentTile % this.hTiles;
+    this.texture.offset.x = iColumn / this.hTiles;
+    var iRow = Math.floor(this.currentTile / this.hTiles);
+    this.texture.offset.y = iRow / this.vTiles;
+  }
+
+  secuencia(nombre){
     if (this.secuenciaActual == nombre) return;
 
-  //  this.secuenciaActual = nombre;
+    this.secuenciaActual = nombre;
     this.currentIndex = 0;
-    
+    this.actualizarFrame();
+    this.comenzar();    
   }
-*/
+
+  comenzar(){this.avanzarIndex=true;}
+  
+  parar(){
+    if (this.avanzarIndex == false) return;
+
+    this.avanzarIndex = false;
+    this.currentIndex = 0;
+    this.actualizarFrame();
+  }
 }
 
 
