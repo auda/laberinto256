@@ -47,12 +47,12 @@ class Animacion {
   }
 
   secuencia(nombre){
-    if (this.secuenciaActual == nombre) return;
-
-    this.secuenciaActual = nombre;
-    this.currentIndex = 0;
+    if (this.secuenciaActual != nombre) {
+      this.secuenciaActual = nombre;
+      this.currentIndex = 0;
+    }
+    this.comenzar();
     this.actualizarFrame();
-    this.comenzar();    
   }
 
   comenzar(){this.avanzarIndex=true;}
