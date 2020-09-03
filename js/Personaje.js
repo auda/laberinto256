@@ -116,7 +116,7 @@ class Personaje {
   crear3D() {
     this.mesh = Graficos.crearMallaJugador(this.ancho,this.alto,this.largo);
     this.animacion = new Animacion(Graficos.mapaSprites, 
-    {"derecha":[0,1,0,2], "izquierda": [3,4,5], "abajo": [6,7,8], "arriba": [9,10,11], "parado":[6]});  
+    {"derecha":[0,1,0,2], "izquierda": [3,4,3,5], "abajo": [6,7,6,8], "arriba": [9,10,9,11], "parado":[6]});  
     this.animacion.comenzar();
   }
 
