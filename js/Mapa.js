@@ -17,7 +17,7 @@ class Mapa {
     this.meshAgua;
     this.image = {estado:0};
     this.t = 0;
-    this.alturaAgua = -13;
+    this.alturaAgua = 3;
     this.velocidadAlturaAgua = 0.001;
   }
 

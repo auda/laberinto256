@@ -101,10 +101,11 @@ class Graficos {
 
     if (Juego.configuracion.verMuneco) {
       var spriteMap = Graficos.mapaSprites;
-      var spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap });
+      var spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap, depthTest:true, transparent:true, opacity:1});
       var sprite = new THREE.Sprite(spriteMaterial);
       sprite.scale.set(largo, alto, ancho);
       sprite.translateY(alto / 2);
+      sprite.renderOrder = 0;
       group.add(sprite);
     }
 
@@ -232,11 +233,11 @@ class Graficos {
     var g = new THREE.PlaneBufferGeometry(ancho, largo);
     g.rotateX(-Math.PI / 2);
     g.translate(0, 0, 0);
-    var m = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    var m = new THREE.MeshBasicMaterial({ color: 0x0000ff , transparent:true, opacity: 0.4 });
     var obj = new THREE.Mesh(g, m);
     malla.add(obj);
 */
-/*
+
     var geometry = new THREE.PlaneBufferGeometry( ancho, largo, 100, 100);
     geometry.rotateX( - Math.PI / 2 );
 
@@ -246,19 +247,21 @@ class Graficos {
     for ( var i = 0; i < position.count; i ++ ) {
       var y = Math.sin( i / 2 )/2;
       position.setY( i, y );
-    }
+      }
 
 //    var texture = new THREE.TextureLoader().load( 'textures/water.jpg' );
 //    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 //    texture.repeat.set( 5, 5 );
 
 //    material = new THREE.MeshBasicMaterial( { color: 0x0044ff, map: texture } );
-    var material = new THREE.MeshBasicMaterial( { color: 0x0044ff } );
+    var material = new THREE.MeshBasicMaterial( { color: 0x0044ff ,
+    opacity: 0.5, 
+    transparent: true} );
 
     var mesh = new THREE.Mesh( geometry, material );
     malla.add( mesh );
-*/
 
+/*
       var waterGeometry = new THREE.PlaneBufferGeometry( ancho, largo );  
 
 			var	water = new Water(
@@ -283,6 +286,7 @@ class Graficos {
 				water.rotation.x = - Math.PI / 2;
 
     malla.add(water);
+    */
     return malla;
   }
 }
