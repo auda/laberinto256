@@ -14,8 +14,11 @@ class Mapa {
     this.tamCelda = tamCelda;
     this.objetos = new Array();
     this.mesh;
+    this.meshAgua;
     this.image = {estado:0};
     this.t = 0;
+    this.alturaAgua = -13;
+    this.velocidadAlturaAgua = 0.001;
   }
 
   cargar () {
@@ -106,20 +109,28 @@ class Mapa {
       group.add(obj);
     }
 
-
     var obj = Graficos.crearSprite('llave', this.objetos[0].posicion, 5);
     group.add(obj);
     this.llave = obj;
+
+    // creamos el alturaAgua
+    this.meshAgua = Graficos.crearAgua(this.filas*this.tamCelda,this.columnas*this.tamCelda);
+    group.add(this.meshAgua);
 
    this.mesh = group;
   }
  
   actualizar() {
+      this.alturaAgua += this.velocidadAlturaAgua;
+      
       this.t+=.05;
       var s = this.llave.scale;
       var ancho = Math.round(5*Math.sin(this.t/1.8));    
       this.llave.scale.set(ancho,s.y,s.z); 
+
+      this.meshAgua.position.y = this.alturaAgua;
   }
+
 
 
 }

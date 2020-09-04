@@ -1,7 +1,7 @@
 
 import * as THREE from 'three';
 import { Juego } from "./Juego";
-
+import { Water } from "./Water"
 
 class Recursos {}
 Recursos.mapaSprites = "https://raw.githubusercontent.com/auda/laberinto256/master/resources/pj4.png";
@@ -224,6 +224,67 @@ class Graficos {
     return group;
   }
 
+
+
+  static crearAgua(ancho,largo) {
+    var malla = new THREE.Group();
+      /*
+    var g = new THREE.PlaneBufferGeometry(ancho, largo);
+    g.rotateX(-Math.PI / 2);
+    g.translate(0, 0, 0);
+    var m = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    var obj = new THREE.Mesh(g, m);
+    malla.add(obj);
+*/
+/*
+    var geometry = new THREE.PlaneBufferGeometry( ancho, largo, 100, 100);
+    geometry.rotateX( - Math.PI / 2 );
+
+    var position = geometry.attributes.position;
+    position.usage = THREE.DynamicDrawUsage;
+
+    for ( var i = 0; i < position.count; i ++ ) {
+      var y = Math.sin( i / 2 )/2;
+      position.setY( i, y );
+    }
+
+//    var texture = new THREE.TextureLoader().load( 'textures/water.jpg' );
+//    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+//    texture.repeat.set( 5, 5 );
+
+//    material = new THREE.MeshBasicMaterial( { color: 0x0044ff, map: texture } );
+    var material = new THREE.MeshBasicMaterial( { color: 0x0044ff } );
+
+    var mesh = new THREE.Mesh( geometry, material );
+    malla.add( mesh );
+*/
+
+      var waterGeometry = new THREE.PlaneBufferGeometry( ancho, largo );  
+
+			var	water = new Water(
+					waterGeometry,
+					{
+						textureWidth: 512,
+						textureHeight: 512,
+						waterNormals: new THREE.TextureLoader().load( 'textures/waternormals.jpg', function ( texture ) {
+
+							texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+						} ),
+						alpha: 1.0,
+						sunDirection: new THREE.Vector3(),
+						sunColor: 0xffffff,
+						waterColor: 0x001e0f,
+						distortionScale: 3.7,
+						fog: scene.fog !== undefined
+					}
+				);
+
+				water.rotation.x = - Math.PI / 2;
+
+    malla.add(water);
+    return malla;
+  }
 }
 
 Graficos.camera = null;
